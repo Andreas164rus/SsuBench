@@ -3,8 +3,8 @@ from pydantic import BaseSettings
 
 class Settings(BaseSettings):
     app_title: str = 'База'
-    database_url: str
-    secret: str = 'SECRET'
+    DATABASE_URL: str
+    secret: str = 'SECRET' # this's for user's password
 
     class Config:
         env_file = '.env'
