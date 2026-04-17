@@ -2,13 +2,16 @@ from typing import Optional, Union
 
 from fastapi import Depends, Request
 from fastapi_users import (
-    BaseUserManager, FastAPIUsers, IntegerIDMixin, InvalidPasswordException
+    BaseUserManager, FastAPIUsers, IntegerIDMixin,
 )
 from fastapi_users.authentication import (
     AuthenticationBackend, BearerTransport, JWTStrategy
 )
+from fastapi_users.exceptions import UserAlreadyExists, InvalidPasswordException
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 from sqlalchemy.ext.asyncio import AsyncSession
+
+from sqlalchemy import select
 
 from app.core.config import settings
 from app.core.db import get_async_session
@@ -44,15 +47,31 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
             raise InvalidPasswordException(
                 reason='Password should be at least 3 characters'
             )
-        if user.email in password:
+        if user.username in password:
             raise InvalidPasswordException(
-                reason='Password should not contain e-mail'
+                reason='Password should not contain username'
             )
+    async def create(self, user_create: UserCreate, safe: bool = False, request: Optional[Request] = None):
+        await self.validate_password(user_create.password, user_create)
+        session = self.user_db.session
+        
+        existing_user = await session.execute(
+            select(User).where(User.username == user_create.username)
+        )
+        if existing_user.scalars().first():
+            raise UserAlreadyExists()
+        
+        user_dict = {
+            "username": user_create.username,
+            "first_name": user_create.first_name,
+            "last_name": user_create.last_name,
+            "hashed_password": self.password_helper.hash(user_create.password),
+            "is_active": True,
+            "is_superuser": False,
+        }
 
-    async def on_after_register(
-            self, user: User, request: Optional[Request] = None
-    ):
-        pass
+        created_user = await self.user_db.create(user_dict)
+        return created_user
 
 
 async def get_user_manager(user_db=Depends(get_user_db)):
