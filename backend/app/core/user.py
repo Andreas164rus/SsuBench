@@ -1,6 +1,6 @@
 from typing import Optional, Union
 
-from fastapi import Depends, Request
+from fastapi import Depends, Request, HTTPException, status
 from fastapi_users import (
     BaseUserManager,
     FastAPIUsers,
@@ -14,8 +14,9 @@ from fastapi_users.authentication import (
 from fastapi_users.exceptions import UserAlreadyExists, InvalidPasswordException
 from fastapi_users_db_sqlalchemy import SQLAlchemyUserDatabase
 from sqlalchemy.ext.asyncio import AsyncSession
+from fastapi.security import OAuth2PasswordRequestForm
 
-from sqlalchemy import select
+from sqlalchemy import select, func
 
 from app.core.config import settings
 from app.core.db import get_async_session
@@ -40,6 +41,27 @@ auth_backend = AuthenticationBackend(
     transport=bearer_transport,
     get_strategy=get_jwt_strategy,
 )
+
+
+class CustomUserDatabase(SQLAlchemyUserDatabase):
+    async def get_by_username(self, username: str) -> Optional[User]:
+        statement = select(User).where(
+            func.lower(User.username) == func.lower(username)
+        )
+        result = await self.session.execute(statement)
+        return result.scalars().first()
+
+    async def get_by_employee_code(self, employee_code: str) -> Optional[User]:
+        statement = select(User).where(User.employee_code == employee_code)
+        result = await self.session.execute(statement)
+        return result.scalars().first()
+
+    async def get_by_email(self, email: str) -> Optional[User]:
+        return None
+
+
+async def get_user_db(session: AsyncSession = Depends(get_async_session)):
+    yield CustomUserDatabase(session, User)
 
 
 class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
@@ -94,6 +116,19 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
         created_user = await self.user_db.create(user_dict)
         return created_user
 
+    async def authenticate(
+        self, credentials: OAuth2PasswordRequestForm
+    ) -> Optional[User]:
+        user = await self.user_db.get_by_username(credentials.username)
+        if not user:
+            return None
+        verified, updated_hash = self.password_helper.verify_and_update(
+            credentials.password, user.hashed_password
+        )
+        if not verified:
+            return None
+        return user
+
 
 async def get_user_manager(user_db=Depends(get_user_db)):
     yield UserManager(user_db)
@@ -103,6 +138,29 @@ fastapi_users = FastAPIUsers[User, int](
     get_user_manager,
     [auth_backend],
 )
+
+
+async def customer_user(
+    user: User = Depends(fastapi_users.current_user(active=True)),
+) -> User:
+    if user.role_id != 1:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Только заказчик может делать это",
+        )
+    return user
+
+
+async def executor_user(
+    user: User = Depends(fastapi_users.current_user(active=True)),
+) -> User:
+    if user.role_id != 2:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Только исполнительно может делать это",
+        )
+    return user
+
 
 current_user = fastapi_users.current_user(active=True)
 current_superuser = fastapi_users.current_user(active=True, superuser=True)

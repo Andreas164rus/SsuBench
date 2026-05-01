@@ -17,10 +17,12 @@ class UserBase(BaseModel):
 
 
 class UserRead(UserBase):
+    id: int
     role_id: int
+    balance: float
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class UserCreate(UserBase):

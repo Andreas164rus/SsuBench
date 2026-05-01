@@ -1,16 +1,20 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float
+from sqlalchemy import Column, Integer, String, ForeignKey, DateTime, Float, Boolean
 from app.core.db import Base
 from sqlalchemy.orm import relationship
 from datetime import datetime
 
+
 class Task(Base):
     customer_id = Column(Integer, ForeignKey("user.id"))
+    selected_executor_id = Column(Integer, ForeignKey("user.id"))
     title = Column(String(length=128), nullable=False)
-    describe = Column(String(length=128), nullable=False)
+    description = Column(String(length=128), nullable=False)
     price = Column(Float, nullable=False)
     created = Column(DateTime, nullable=False, default=datetime.now)
+    done_executor = Column(Boolean, default=False)
+    done_customer = Column(Boolean, default=False)
 
-    customer = relationship("User", backref="customer_task")
+    # customer = relationship("User", backref="customer_task")
 
     def __repr__(self):
         return f"id:{self.id}, {self.title} {self.price}"
