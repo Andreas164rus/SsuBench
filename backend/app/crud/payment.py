@@ -8,13 +8,14 @@ from app.models.payment import Payment
 class CRUDPayment(CRUDBase):
     async def create(
         self,
-        user_id: int,
+        customer_id: int,
+        executor_id: int,
         task_id: int,
         value: float,
         session: AsyncSession,
     ):
 
-        db_obj = self.model(**{"user_id": user_id, "task_id": task_id, "value": value})
+        db_obj = self.model(**{"customer_id": customer_id, 'executor_id': executor_id,"task_id": task_id, "value": value})
         session.add(db_obj)
 
 

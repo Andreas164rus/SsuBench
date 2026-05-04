@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from app.schemas.user import UserRead
 
 
@@ -13,13 +13,11 @@ class CreateBid(BidBase):
 class BidDB(BidBase):
     executor_id: int
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 class BidWithExecutor(BidBase):
     task_id: int
     executor: UserRead
 
-    class Config:
-        from_attributes = True
+    model_config = ConfigDict(from_attributes=True)

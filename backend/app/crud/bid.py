@@ -8,16 +8,17 @@ from app.models.bid import Bid
 class CRUDBid(CRUDBase):
     async def create(
         self,
-        obj_in,
+        task_id,
         executor_id,
         session: AsyncSession,
     ):
-        obj_in_data = obj_in.dict()
+        obj_in_data = {}
         obj_in_data["executor_id"] = executor_id
+        obj_in_data["task_id"] = task_id
         db_obj = self.model(**obj_in_data)
         session.add(db_obj)
-        await session.commit()
-        await session.refresh(db_obj)
+        # await session.commit()
+        # await session.refresh(db_obj)
         return db_obj
 
     async def get_by_executor_id_and_task_id(

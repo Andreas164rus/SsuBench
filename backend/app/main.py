@@ -10,7 +10,7 @@ app.include_router(main_router)
 add_pagination(app)  # important! add pagination to your app
 
 
-@app.on_event("startup")
-async def startup():
-    await create_roles()
-    await create_superusers()
+# @app.on_event("startup")
+# async def startup():
+    # await create_roles()
+    # await create_superusers()

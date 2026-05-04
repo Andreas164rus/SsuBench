@@ -9,7 +9,7 @@ from app.core.user import (
     executor_user,
 )
 from app.core.db import get_async_session
-from app.schemas.task import CreateTask, TaskDB
+from app.schemas.task import CreateTask, TaskDB, TaskDBForAll
 from app.models.user import User
 from app.crud.task import task_crud
 from app.models.task import Task
@@ -76,7 +76,7 @@ async def my(
     )
 
 
-@router.get("/done_task_executor/{task_id}/", response_model=TaskDB, tags=["task"])
+@router.post("/done_task_executor/{task_id}/", response_model=TaskDB, tags=["task"])
 async def done_task_by_ex(
     task_id: int,
     user: User = Depends(executor_user),
@@ -87,7 +87,7 @@ async def done_task_by_ex(
     return task
 
 
-@router.get("/done_task_customer/{task_id}/", response_model=TaskDB, tags=["task"])
+@router.post("/done_task_customer/{task_id}/", response_model=TaskDB, tags=["task"])
 async def done_task_by_cus(
     task_id: int,
     user: User = Depends(customer_user),
@@ -107,3 +107,20 @@ async def cancel_task(
     task_service = TaskService(session)
     task = await task_service.delete_task(task_id, user.id)
     return task
+
+    # task = await task_crud.get(data.task_id, session)
+    # if task is None:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_404_NOT_FOUND,
+    #         detail="Такой задачи не существует!",
+    #     )
+    # selected_task = await bid_crud.get_by_executor_id_and_task_id(
+    #     data.task_id, user.id, session
+    # )
+    # if selected_task is not None:
+    #     raise HTTPException(
+    #         status_code=status.HTTP_403_FORBIDDEN,
+    #         detail="Вы уже откликнулись на задачу!",
+    #     )
+    # bid = await bid_crud.create(data, user.id, session)
+    # return bid

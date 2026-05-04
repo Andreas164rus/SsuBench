@@ -20,33 +20,10 @@ from app.models.bid import Bid
 from fastapi_pagination import Page
 from fastapi_pagination.ext.sqlalchemy import paginate
 from app.services.bid import BidService
+from app.services.task import TaskService
 
 
 router = APIRouter(prefix="/bid")
-
-
-@router.post("/response/", response_model=BidDB, tags=["bid"])
-async def response_to_a_task(
-    data: CreateBid,
-    user: User = Depends(executor_user),
-    session: AsyncSession = Depends(get_async_session),
-):
-    task = await task_crud.get(data.task_id, session)
-    if task is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Такой задачи не существует!",
-        )
-    selected_task = await bid_crud.get_by_executor_id_and_task_id(
-        data.task_id, user.id, session
-    )
-    if selected_task is not None:
-        raise HTTPException(
-            status_code=status.HTTP_403_FORBIDDEN,
-            detail="Вы уже откликнулись на задачу!",
-        )
-    bid = await bid_crud.create(data, user.id, session)
-    return bid
 
 
 @router.get(
@@ -62,6 +39,17 @@ async def who_responsed_by_task(
     bid_service = BidService(session)
     query = await bid_service.get_bids_by_task(task_id, user.id)
     return await paginate(session, query)
+
+
+@router.post("/{task_id}/response/", response_model=BidDB, tags=["task"])
+async def response_to_a_task(
+    task_id: int,
+    user: User = Depends(executor_user),
+    session: AsyncSession = Depends(get_async_session),
+):
+    task_service = TaskService(session)
+    task = await task_service.response_task(task_id, user.id)
+    return task
 
 
 # @router.get("/open/", response_model=Page[TaskDB], tags=["bid"])

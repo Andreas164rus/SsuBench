@@ -30,7 +30,7 @@ async def create_user(
                     await user_manager.create(
                         UserCreate(
                             username=username,
-                            role_id="Заказчик",
+                            role_id=1,
                             first_name=first_name,
                             last_name=last_name,
                             password=password,

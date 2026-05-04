@@ -37,16 +37,12 @@ class TaskService:
         bid: Bid = await bid_crud.get_by_executor_id_and_task_id(
             task_id, executor_id, self.session
         )
-        if bid is None:
-            raise HTTPException(
-                status.HTTP_404_NOT_FOUND,
-                detail="Неверный номер задачи или исполнитель!",
-            )
-        if bid.executor_id != executor_id:
+        if bid is None or bid.executor_id != executor_id:
             raise HTTPException(
                 status.HTTP_403_FORBIDDEN,
                 detail="Этот пользователь не записывался на эту задачу!",
             )
+
         task.selected_executor_id = executor_id
         await self.session.commit()
         await self.session.refresh(task)
@@ -59,13 +55,10 @@ class TaskService:
                 status.HTTP_404_NOT_FOUND,
                 detail="Такой задачи не существует!",
             )
-        bid: Bid = await bid_crud.get_by_executor_id_and_task_id(
-            task_id, executor_id, self.session
-        )
-        if bid is None:
+        if task.selected_executor_id != executor_id:
             raise HTTPException(
-                status.HTTP_404_NOT_FOUND,
-                detail="Неверный номер задачи или исполнитель!",
+                status.HTTP_403_FORBIDDEN,
+                detail="Вы небраны исполнителем для этой задачи!",
             )
         task.done_executor = True
         await self.session.commit()
@@ -100,9 +93,12 @@ class TaskService:
                 detail="Не хватет денег для оплаты!",
             )
         await payment_crud.create(
-            task.selected_executor_id, task_id, task.price, self.session
+            task.customer_id,
+            task.selected_executor_id,
+            task_id,
+            task.price,
+            self.session,
         )
-        await payment_crud.create(task.customer_id, task_id, -task.price, self.session)
         customer.balance -= task.price
         executor: User = await user_crud.get(task.selected_executor_id, self.session)
         executor.balance += task.price
@@ -131,3 +127,24 @@ class TaskService:
 
         task_deleted = await task_crud.remove(task, self.session)
         return task_deleted
+
+    async def response_task(self, task_id, executor_id):
+        task: Task = await task_crud.get(task_id, self.session)
+        if task is None:
+            raise HTTPException(
+                status.HTTP_404_NOT_FOUND,
+                detail="Такой задачи не существует!",
+            )
+        bid: Bid = await bid_crud.get_by_executor_id_and_task_id(
+            task_id, executor_id, self.session
+        )
+        if bid is not None:
+            raise HTTPException(
+                status.HTTP_403_FORBIDDEN,
+                detail="Отклик уже отправлен!",
+            )
+        bid: Bid = await bid_crud.create(task_id, executor_id, self.session)
+        await self.session.commit()
+        await self.session.refresh(bid)
+
+        return bid

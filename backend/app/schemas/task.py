@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional
 
 
@@ -12,8 +12,16 @@ class CreateTask(TaskBase):
     pass
 
 
-class TaskDB(TaskBase):
-    selected_executor_id: Optional[int] = None
+# class
 
-    class Config:
-        from_attributes = True
+
+class TaskDB(TaskBase):
+    id: int
+    selected_executor_id: Optional[int] = None
+    done_executor: bool
+    done_customer: bool
+    model_config = ConfigDict(from_attributes=True)
+
+
+class TaskDBForAll(TaskBase):
+    model_config = ConfigDict(from_attributes=True)

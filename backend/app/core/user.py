@@ -51,10 +51,6 @@ class CustomUserDatabase(SQLAlchemyUserDatabase):
         result = await self.session.execute(statement)
         return result.scalars().first()
 
-    async def get_by_employee_code(self, employee_code: str) -> Optional[User]:
-        statement = select(User).where(User.employee_code == employee_code)
-        result = await self.session.execute(statement)
-        return result.scalars().first()
 
     async def get_by_email(self, email: str) -> Optional[User]:
         return None
@@ -106,8 +102,7 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
             user_create.username == settings.username_admin
             and user_create.password == settings.password_admin
         ):
-            role_db = await role_crud.get_by_name(user_create.role_id.value, session)
-            user_dict["role_id"] = role_db.id
+            user_dict["role_id"] = user_create.role_id
         else:
             user_dict["is_superuser"] = True
             role_db = await role_crud.get_by_name("Админ", session)
