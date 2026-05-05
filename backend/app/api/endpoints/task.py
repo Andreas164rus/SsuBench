@@ -1,19 +1,16 @@
 from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.user import (
-    auth_backend,
-    fastapi_users,
-    current_superuser,
     current_user,
     customer_user,
     executor_user,
 )
 from app.core.db import get_async_session
-from app.schemas.task import CreateTask, TaskDB, TaskDBForAll
+from app.schemas.task import CreateTask, TaskDB
 from app.models.user import User
 from app.crud.task import task_crud
 from app.models.task import Task
-from sqlalchemy import select, not_, exists
+from sqlalchemy import select
 from app.models.bid import Bid
 from fastapi_pagination import Page
 from fastapi_pagination.ext.sqlalchemy import paginate
@@ -30,6 +27,7 @@ async def select_user_for_a_task(
     user: User = Depends(customer_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    """Выбор исполнителя для задачи заказчиком"""
     task_service = TaskService(session)
     task = await task_service.select_user_for_task(task_id, user.id, executor_id)
     return task
@@ -41,6 +39,7 @@ async def create_task(
     user: User = Depends(customer_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    """Создание задачи заказчиком"""
     task = await task_crud.create(data, user.id, session)
     return task
 
@@ -50,10 +49,11 @@ async def get_not_busy_tasks(
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    """Получение свободных задач, на которые еще не выбрано исполнитель"""
     return await paginate(
         session,
         select(Task)
-        .where(not_(exists().where(Bid.task_id == Task.id)))
+        .where(Task.selected_executor_id == None)  # noqa
         .order_by(Task.created),
     )
 
@@ -63,6 +63,7 @@ async def all(
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    """Получение всех задач"""
     return await paginate(session, select(Task).order_by(Task.created))
 
 
@@ -71,9 +72,25 @@ async def my(
     user: User = Depends(customer_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    """Задачи исполнителя"""
     return await paginate(
         session, select(Task).where(Task.customer_id == user.id).order_by(Task.created)
     )
+
+
+@router.get("/my_responsed_tasks/", response_model=Page[TaskDB], tags=["task"])
+async def my_responsed_tasks(
+    user: User = Depends(executor_user),
+    session: AsyncSession = Depends(get_async_session),
+):
+    """Задачи, на которые откликнулся исполнитель"""
+    query = (
+        select(Task)
+        .join(Bid, Bid.task_id == Task.id)
+        .where(Bid.executor_id == user.id)
+        .order_by(Task.created)
+    )
+    return await paginate(session, query)
 
 
 @router.post("/done_task_executor/{task_id}/", response_model=TaskDB, tags=["task"])
@@ -107,20 +124,3 @@ async def cancel_task(
     task_service = TaskService(session)
     task = await task_service.delete_task(task_id, user.id)
     return task
-
-    # task = await task_crud.get(data.task_id, session)
-    # if task is None:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_404_NOT_FOUND,
-    #         detail="Такой задачи не существует!",
-    #     )
-    # selected_task = await bid_crud.get_by_executor_id_and_task_id(
-    #     data.task_id, user.id, session
-    # )
-    # if selected_task is not None:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_403_FORBIDDEN,
-    #         detail="Вы уже откликнулись на задачу!",
-    #     )
-    # bid = await bid_crud.create(data, user.id, session)
-    # return bid

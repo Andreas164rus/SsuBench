@@ -12,9 +12,6 @@ class CreateTask(TaskBase):
     pass
 
 
-# class
-
-
 class TaskDB(TaskBase):
     id: int
     selected_executor_id: Optional[int] = None

@@ -2,15 +2,10 @@ from app.models.bid import Bid
 from app.models.task import Task
 from app.models.user import User
 from fastapi import HTTPException, status
-from sqlalchemy import select
-from sqlalchemy.orm import joinedload
 from app.crud.task import task_crud
 from app.crud.bid import bid_crud
 from app.crud.payment import payment_crud
 from app.crud.user import user_crud
-from fastapi_pagination import paginate
-
-from app.schemas.payment import PaymentDB
 
 
 class TaskService:

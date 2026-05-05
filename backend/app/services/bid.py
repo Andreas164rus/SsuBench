@@ -4,7 +4,6 @@ from fastapi import HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.orm import joinedload
 from app.crud.task import task_crud
-from fastapi_pagination import paginate
 
 
 class BidService:

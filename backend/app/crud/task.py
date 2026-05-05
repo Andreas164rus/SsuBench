@@ -12,7 +12,7 @@ class CRUDTask(CRUDBase):
         customer_id,
         session: AsyncSession,
     ):
-        obj_in_data = obj_in.dict()
+        obj_in_data = obj_in.model_dump()
         obj_in_data["customer_id"] = customer_id
         db_obj = self.model(**obj_in_data)
         session.add(db_obj)

@@ -51,7 +51,6 @@ class CustomUserDatabase(SQLAlchemyUserDatabase):
         result = await self.session.execute(statement)
         return result.scalars().first()
 
-
     async def get_by_email(self, email: str) -> Optional[User]:
         return None
 
@@ -102,6 +101,11 @@ class UserManager(IntegerIDMixin, BaseUserManager[User, int]):
             user_create.username == settings.username_admin
             and user_create.password == settings.password_admin
         ):
+            if user_create.role_id not in [1, 2]:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail="Нужно выбрать роль 1 (Заказчик) или 2 (исполнитель)",
+                )
             user_dict["role_id"] = user_create.role_id
         else:
             user_dict["is_superuser"] = True
@@ -157,5 +161,15 @@ async def executor_user(
     return user
 
 
+async def admin_user(
+    user: User = Depends(fastapi_users.current_user(active=True)),
+) -> User:
+    if user.role_id in [1, 2]:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Нет доступа",
+        )
+    return user
+
+
 current_user = fastapi_users.current_user(active=True)
-current_superuser = fastapi_users.current_user(active=True, superuser=True)

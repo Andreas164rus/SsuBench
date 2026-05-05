@@ -1,12 +1,8 @@
-# tests/conftest.py
 import pytest
 from httpx import ASGITransport, AsyncClient
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession
-from sqlalchemy.orm import sessionmaker
 from app.main import app
 from app.core.db import get_async_session, Base
-from app.core.init_db import create_superusers, create_user
-from app.core.user import UserManager, UserCreate
 from fastapi_users.password import PasswordHelper
 from passlib.context import CryptContext
 from app.models.user import User
@@ -181,6 +177,17 @@ async def created_task(customer_first_token, client):
 
 
 @pytest.fixture
+async def created_task_too_expensive(customer_first_token, client):
+    """Создает задачу и возвращает ее"""
+    response = await client.post(
+        "/task/create/",
+        json={"title": "Test Task", "description": "Desc", "price": 5000},
+        headers={"Authorization": f"Bearer {customer_first_token}"},
+    )
+    return response.json()
+
+
+@pytest.fixture
 async def response_for_task(created_task, executor_first_token, client):
     """Отклик на задачу и возвращает отклик"""
     response = await client.post(
@@ -230,3 +237,21 @@ async def done_executor_task(
     )
 
     return response.json()
+
+
+@pytest.fixture
+async def created_some_task(customer_first_token, client):
+    """Создает несколько задач"""
+    tasks = []
+    for k in range(5):
+        response = await client.post(
+            "/task/create/",
+            json={
+                "title": f"Test Task{k + 1}",
+                "description": "Desc",
+                "price": (k + 1) * 2,
+            },
+            headers={"Authorization": f"Bearer {customer_first_token}"},
+        )
+        tasks.append(response.json())
+    return tasks

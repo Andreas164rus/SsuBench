@@ -1,23 +1,13 @@
 from fastapi_users import schemas
 from pydantic import BaseModel, Field, ConfigDict
 from typing import Optional
-from enum import Enum
 
-
-class rolesCreate(str, Enum):
-    customer = "Заказчик"
-    executor = "Исполнитель"
-
-class allRoles(str, Enum):
-    customer = "Заказчик"
-    executor = "Исполнитель"
-    admin = 'Админ'
 
 class UserBase(BaseModel):
     username: str = Field(..., max_length=32)
     first_name: str = Field(..., max_length=32)
     last_name: str = Field(..., max_length=32)
-    role_id: Optional[allRoles]
+    role_id: int
 
 
 class UserRead(UserBase):
@@ -33,5 +23,18 @@ class UserCreate(UserBase):
     role_id: int
 
 
-class UserUpdate(schemas.BaseUserUpdate):
-    pass
+class UserUpdate(BaseModel):
+    username: str = Field(None, max_length=32)
+    first_name: str = Field(None, max_length=32)
+    last_name: str = Field(None, max_length=32)
+    role_id: Optional[int] = None
+
+
+class UserUpdateMe(BaseModel):
+    username: str = Field(None, max_length=32)
+    first_name: str = Field(None, max_length=32)
+    last_name: str = Field(None, max_length=32)
+
+
+# class UserUpdate(schemas.BaseUserUpdate):
+#     pass
