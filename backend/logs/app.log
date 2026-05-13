@@ -1,0 +1,280 @@
+2026-05-13 16:58:31,297 - app.api.endpoints.task - INFO - 4 создал задачу
+2026-05-13 16:59:08,015 - app.api.endpoints.task - INFO - Пользователь 4 создал задачу None
+2026-05-13 17:15:20,151 - app.main - INFO - → POST /task/create/
+2026-05-13 17:18:12,482 - app.main - INFO - → POST /task/create/
+2026-05-13 17:18:12,668 - app.main - INFO - ← 200
+2026-05-13 17:19:37,469 - app.main - INFO - → POST /task/create/
+2026-05-13 17:19:37,658 - app.main - INFO - ← 200
+2026-05-13 17:19:50,317 - app.main - INFO - → POST /task/create/
+2026-05-13 17:19:50,507 - app.main - INFO - ← 200
+2026-05-13 17:19:59,621 - app.main - INFO - → POST /task/create/
+2026-05-13 17:19:59,806 - app.main - INFO - ← 200
+2026-05-13 17:20:31,568 - app.main - INFO - → POST /task/create/
+2026-05-13 17:20:31,844 - app.api.endpoints.task - INFO - 15
+2026-05-13 17:20:31,845 - app.main - INFO - ← 200
+2026-05-13 17:21:09,497 - app.main - INFO - → POST /task/create/
+2026-05-13 17:21:09,632 - app.api.endpoints.task - INFO - 16
+2026-05-13 17:21:09,633 - app.main - INFO - ← 200
+2026-05-13 17:21:17,094 - app.main - INFO - → POST /task/create/
+2026-05-13 17:24:34,619 - app.main - INFO - → POST /task/create/
+2026-05-13 17:24:34,807 - app.api.endpoints.task - INFO - Пользователь '4' создал задачу '18'
+2026-05-13 17:24:34,807 - app.main - INFO - ← 200
+2026-05-13 17:26:23,397 - app.main - INFO - POST /task/create/ - client: 127.0.0.1 - headers: {'host': 'localhost:8000', 'connection': 'keep-alive', 'content-length': '64', 'sec-ch-ua-platform': '"Windows"', 'authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0IiwiYXVkIjpbImZhc3RhcGktdXNlcnM6YXV0aCJdLCJleHAiOjE3Nzg2ODAyMjh9.p2-Mw0w28StgfNJWFiY_wdd260xQ_DoWLDDy_rVg-Vs', 'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/146.0.0.0 YaBrowser/26.4.0.0 Safari/537.36', 'accept': 'application/json', 'sec-ch-ua': '"Chromium";v="146", "Not-A.Brand";v="24", "YaBrowser";v="26.4", "Yowser";v="2.5"', 'content-type': 'application/json', 'sec-ch-ua-mobile': '?0', 'origin': 'http://localhost:8000', 'sec-fetch-site': 'same-origin', 'sec-fetch-mode': 'cors', 'sec-fetch-dest': 'empty', 'referer': 'http://localhost:8000/docs', 'accept-encoding': 'gzip, deflate, br, zstd', 'accept-language': 'ru,en;q=0.9', 'cookie': 'session=eyJ1c2VyX2lkIjogMSwgInVzZXJuYW1lIjogIkFkbWluNGlrIiwgImlzX2FkbWluIjogdHJ1ZX0=.afiFLw.liRGS4_jkuEWplnJs_MPmyUX-OQ'}
+2026-05-13 17:26:23,487 - app.api.endpoints.task - INFO - Пользователь '4' создал задачу '19'
+2026-05-13 17:27:40,504 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 17:27:40,690 - app.api.endpoints.task - INFO - Пользователь '4' создал задачу '20'
+2026-05-13 17:29:15,326 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 17:29:15,517 - app.api.endpoints.task - INFO - Пользователь '4' создал задачу '21'
+2026-05-13 17:46:07,406 - app.main - INFO - POST /task/5/user/2/ - from 127.0.0.1
+2026-05-13 17:46:32,522 - app.main - INFO - POST /auth/register - from 127.0.0.1
+2026-05-13 17:46:39,664 - app.main - INFO - POST /auth/register - from 127.0.0.1
+2026-05-13 17:49:35,926 - app.main - INFO - POST /bid/5/response/ - from 127.0.0.1
+2026-05-13 17:49:49,727 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 17:49:52,537 - app.main - INFO - POST /bid/5/response/ - from 127.0.0.1
+2026-05-13 17:49:52,751 - app.api.endpoints.bid - INFO - Исполнитель '5' откликнулся на задачу '1'
+2026-05-13 17:52:22,125 - app.main - INFO - GET /bid/who_responsed_by_task/5 - from 127.0.0.1
+2026-05-13 17:52:31,567 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 17:52:49,756 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 17:52:52,607 - app.main - INFO - GET /bid/who_responsed_by_task/5 - from 127.0.0.1
+2026-05-13 17:52:52,618 - app.api.endpoints.bid - INFO - Заказчик '4' посмотрел кто откликнулся на задачу '5'
+2026-05-13 17:55:15,493 - app.main - INFO - POST /task/5/user/2/ - from 127.0.0.1
+2026-05-13 17:55:20,379 - app.main - INFO - POST /task/5/user/5/ - from 127.0.0.1
+2026-05-13 17:55:20,582 - app.api.endpoints.task - INFO - Заказчик '4' выбрал пользователя 5 для задачи '5'
+2026-05-13 17:56:46,654 - app.main - INFO - GET /task/open/ - from 127.0.0.1
+2026-05-13 17:56:46,662 - app.api.endpoints.task - INFO - Пользователь '4' посмотрел свободные задачи
+2026-05-13 17:57:17,020 - app.main - INFO - GET /task/all/ - from 127.0.0.1
+2026-05-13 17:57:17,029 - app.api.endpoints.task - INFO - Пользователь '4' посмотрел все задачи
+2026-05-13 17:57:54,874 - app.main - INFO - GET /task/my_tasks/ - from 127.0.0.1
+2026-05-13 17:57:54,879 - app.api.endpoints.task - INFO - Заказчик '4' посмотрел все свои задачи
+2026-05-13 17:58:42,102 - app.main - INFO - GET /task/my_responsed_tasks/ - from 127.0.0.1
+2026-05-13 17:58:42,871 - app.main - INFO - GET /task/my_responsed_tasks/ - from 127.0.0.1
+2026-05-13 17:59:36,445 - app.main - INFO - GET /task/my_responsed_tasks/ - from 127.0.0.1
+2026-05-13 17:59:36,453 - app.api.endpoints.task - INFO - Исполнитель '5' посмотрел все свои задачи, на которые откликнулся
+2026-05-13 18:02:34,631 - app.main - INFO - POST /task/5/user/5/ - from 127.0.0.1
+2026-05-13 18:02:59,066 - app.main - INFO - POST /task/done_task_executor/5/ - from 127.0.0.1
+2026-05-13 18:02:59,514 - app.api.endpoints.task - INFO - Исполнитель '5' завершил задачу '5'
+2026-05-13 18:03:14,876 - app.main - INFO - POST /task/done_task_customer/5/ - from 127.0.0.1
+2026-05-13 18:03:28,629 - app.main - INFO - POST /task/done_task_customer/5/ - from 127.0.0.1
+2026-05-13 18:03:28,936 - app.api.endpoints.task - INFO - Исполнитель '4' подтвердил завершение задачи '5'
+2026-05-13 18:04:12,138 - app.main - INFO - DELETE /task/delete/6/ - from 127.0.0.1
+2026-05-13 18:04:12,322 - app.api.endpoints.task - INFO - Исполнитель '4' удалил задачу '6'
+2026-05-13 18:08:23,434 - app.main - INFO - POST /task/444/user/5/ - from 127.0.0.1
+2026-05-13 18:08:23,443 - app.services.task - WARNING - Заказчик '4' попытался выбрать заказчика '5' для задачи '444', которой не существует
+2026-05-13 18:23:44,287 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:44,383 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:44,386 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:44,413 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:44,414 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:44,855 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:44,943 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:44,945 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:44,953 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:44,954 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:44,955 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:45,044 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:45,046 - app.main - INFO - POST /bid/1/response/ - from 127.0.0.1
+2026-05-13 18:23:45,162 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '1'
+2026-05-13 18:23:45,163 - httpx - INFO - HTTP Request: POST http://test/bid/1/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:45,164 - app.main - INFO - POST /bid/1/response/ - from 127.0.0.1
+2026-05-13 18:23:45,171 - app.services.task - WARNING - Исполнитель '4' попытался повторно откликнуться на несуществующую задачу '1'
+2026-05-13 18:23:45,172 - httpx - INFO - HTTP Request: POST http://test/bid/1/response/ "HTTP/1.1 403 Forbidden"
+2026-05-13 18:23:45,604 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:45,689 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:45,690 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:45,700 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:45,701 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:45,702 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:45,791 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:45,792 - app.main - INFO - POST /bid/1/response/ - from 127.0.0.1
+2026-05-13 18:23:45,801 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '1'
+2026-05-13 18:23:45,802 - httpx - INFO - HTTP Request: POST http://test/bid/1/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:45,804 - app.main - INFO - POST /task/1/user/4/ - from 127.0.0.1
+2026-05-13 18:23:45,814 - app.api.endpoints.task - INFO - Заказчик '2' выбрал пользователя '4' для задачи '1'
+2026-05-13 18:23:45,815 - httpx - INFO - HTTP Request: POST http://test/task/1/user/4/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:46,251 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:46,341 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:46,343 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:46,350 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:46,351 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:46,352 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:46,443 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:46,444 - app.main - INFO - POST /bid/1/response/ - from 127.0.0.1
+2026-05-13 18:23:46,453 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '1'
+2026-05-13 18:23:46,454 - httpx - INFO - HTTP Request: POST http://test/bid/1/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:46,456 - app.main - INFO - POST /task/1/user/4/ - from 127.0.0.1
+2026-05-13 18:23:46,464 - app.api.endpoints.task - INFO - Заказчик '2' выбрал пользователя '4' для задачи '1'
+2026-05-13 18:23:46,465 - httpx - INFO - HTTP Request: POST http://test/task/1/user/4/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:46,466 - app.main - INFO - POST /task/1/user/5/ - from 127.0.0.1
+2026-05-13 18:23:46,471 - app.services.task - WARNING - Заказчик '2' попытался выбрать заказчика '5' для задачи '1', в которую уже закреплен '4'
+2026-05-13 18:23:46,472 - httpx - INFO - HTTP Request: POST http://test/task/1/user/5/ "HTTP/1.1 403 Forbidden"
+2026-05-13 18:23:46,909 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:46,992 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:46,994 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:47,001 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:47,002 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:47,004 - app.main - INFO - POST /task/1/user/4/ - from 127.0.0.1
+2026-05-13 18:23:47,010 - app.services.task - WARNING - Заказчик '2' попытался выбрать заказчика '4', который не откликался на задачу '1'
+2026-05-13 18:23:47,011 - httpx - INFO - HTTP Request: POST http://test/task/1/user/4/ "HTTP/1.1 403 Forbidden"
+2026-05-13 18:23:47,452 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:47,541 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:47,542 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:47,549 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:47,550 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:47,551 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:47,639 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:47,641 - app.main - INFO - POST /bid/1/response/ - from 127.0.0.1
+2026-05-13 18:23:47,649 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '1'
+2026-05-13 18:23:47,650 - httpx - INFO - HTTP Request: POST http://test/bid/1/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:47,651 - app.main - INFO - POST /task/1/user/4/ - from 127.0.0.1
+2026-05-13 18:23:47,660 - app.api.endpoints.task - INFO - Заказчик '2' выбрал пользователя '4' для задачи '1'
+2026-05-13 18:23:47,661 - httpx - INFO - HTTP Request: POST http://test/task/1/user/4/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:47,662 - app.main - INFO - POST /task/done_task_executor/1/ - from 127.0.0.1
+2026-05-13 18:23:47,670 - app.api.endpoints.task - INFO - Исполнитель '4' завершил задачу '1'
+2026-05-13 18:23:47,671 - httpx - INFO - HTTP Request: POST http://test/task/done_task_executor/1/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:48,105 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:48,191 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:48,193 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:48,218 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:48,219 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:48,221 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:48,308 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:48,310 - app.main - INFO - POST /bid/1/response/ - from 127.0.0.1
+2026-05-13 18:23:48,318 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '1'
+2026-05-13 18:23:48,319 - httpx - INFO - HTTP Request: POST http://test/bid/1/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:48,320 - app.main - INFO - POST /task/1/user/4/ - from 127.0.0.1
+2026-05-13 18:23:48,327 - app.api.endpoints.task - INFO - Заказчик '2' выбрал пользователя '4' для задачи '1'
+2026-05-13 18:23:48,328 - httpx - INFO - HTTP Request: POST http://test/task/1/user/4/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:48,330 - app.main - INFO - POST /task/done_task_executor/1/ - from 127.0.0.1
+2026-05-13 18:23:48,336 - app.api.endpoints.task - INFO - Исполнитель '4' завершил задачу '1'
+2026-05-13 18:23:48,337 - httpx - INFO - HTTP Request: POST http://test/task/done_task_executor/1/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:48,339 - app.main - INFO - POST /task/done_task_customer/1/ - from 127.0.0.1
+2026-05-13 18:23:48,352 - app.api.endpoints.task - INFO - Исполнитель '2' подтвердил завершение задачи '1'
+2026-05-13 18:23:48,353 - httpx - INFO - HTTP Request: POST http://test/task/done_task_customer/1/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:48,805 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:48,894 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:48,896 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:48,903 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:48,904 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:48,906 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:49,003 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:49,004 - app.main - INFO - POST /bid/1/response/ - from 127.0.0.1
+2026-05-13 18:23:49,012 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '1'
+2026-05-13 18:23:49,013 - httpx - INFO - HTTP Request: POST http://test/bid/1/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:49,015 - app.main - INFO - POST /task/1/user/4/ - from 127.0.0.1
+2026-05-13 18:23:49,023 - app.api.endpoints.task - INFO - Заказчик '2' выбрал пользователя '4' для задачи '1'
+2026-05-13 18:23:49,024 - httpx - INFO - HTTP Request: POST http://test/task/1/user/4/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:49,025 - app.main - INFO - POST /task/done_task_executor/1/ - from 127.0.0.1
+2026-05-13 18:23:49,033 - app.api.endpoints.task - INFO - Исполнитель '4' завершил задачу '1'
+2026-05-13 18:23:49,034 - httpx - INFO - HTTP Request: POST http://test/task/done_task_executor/1/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:49,036 - app.main - INFO - POST /task/done_task_customer/1/ - from 127.0.0.1
+2026-05-13 18:23:49,047 - app.api.endpoints.task - INFO - Исполнитель '2' подтвердил завершение задачи '1'
+2026-05-13 18:23:49,048 - httpx - INFO - HTTP Request: POST http://test/task/done_task_customer/1/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:49,049 - app.main - INFO - DELETE /task/delete/1/ - from 127.0.0.1
+2026-05-13 18:23:49,053 - app.services.task - WARNING - Заказчик '2' попытался завершить уже завершенную задачу '1'
+2026-05-13 18:23:49,054 - httpx - INFO - HTTP Request: DELETE http://test/task/delete/1/ "HTTP/1.1 403 Forbidden"
+2026-05-13 18:23:49,484 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:49,566 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:49,567 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:49,574 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:49,575 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:49,577 - app.main - INFO - POST /task/done_task_customer/1/ - from 127.0.0.1
+2026-05-13 18:23:49,582 - app.services.task - WARNING - Заказчик '2' попытался завершить задачу '1', которую еще не завершил исполнитель
+2026-05-13 18:23:49,583 - httpx - INFO - HTTP Request: POST http://test/task/done_task_customer/1/ "HTTP/1.1 403 Forbidden"
+2026-05-13 18:23:50,028 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:50,112 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,114 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:50,120 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:50,121 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,123 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:50,199 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,201 - app.main - INFO - POST /bid/1/response/ - from 127.0.0.1
+2026-05-13 18:23:50,208 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '1'
+2026-05-13 18:23:50,209 - httpx - INFO - HTTP Request: POST http://test/bid/1/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,210 - app.main - INFO - POST /task/1/user/4/ - from 127.0.0.1
+2026-05-13 18:23:50,217 - app.api.endpoints.task - INFO - Заказчик '2' выбрал пользователя '4' для задачи '1'
+2026-05-13 18:23:50,218 - httpx - INFO - HTTP Request: POST http://test/task/1/user/4/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,219 - app.main - INFO - POST /task/done_task_executor/1/ - from 127.0.0.1
+2026-05-13 18:23:50,226 - app.api.endpoints.task - INFO - Исполнитель '4' завершил задачу '1'
+2026-05-13 18:23:50,227 - httpx - INFO - HTTP Request: POST http://test/task/done_task_executor/1/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,228 - app.main - INFO - POST /task/done_task_customer/1/ - from 127.0.0.1
+2026-05-13 18:23:50,232 - app.services.task - WARNING - Заказчик '2' попытался завершить задачу '1', но не хватило денег
+2026-05-13 18:23:50,233 - httpx - INFO - HTTP Request: POST http://test/task/done_task_customer/1/ "HTTP/1.1 403 Forbidden"
+2026-05-13 18:23:50,668 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:50,756 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,758 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:50,843 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,845 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:50,932 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,934 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:50,941 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:50,942 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,943 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:50,949 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '2'
+2026-05-13 18:23:50,950 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,951 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:50,957 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '3'
+2026-05-13 18:23:50,959 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,960 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:50,966 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '4'
+2026-05-13 18:23:50,967 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,968 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:50,974 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '5'
+2026-05-13 18:23:50,975 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,977 - app.main - INFO - POST /bid/1/response/ - from 127.0.0.1
+2026-05-13 18:23:50,986 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '1'
+2026-05-13 18:23:50,987 - httpx - INFO - HTTP Request: POST http://test/bid/1/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,988 - app.main - INFO - POST /task/1/user/4/ - from 127.0.0.1
+2026-05-13 18:23:50,997 - app.api.endpoints.task - INFO - Заказчик '2' выбрал пользователя '4' для задачи '1'
+2026-05-13 18:23:50,998 - httpx - INFO - HTTP Request: POST http://test/task/1/user/4/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:50,999 - app.main - INFO - POST /bid/2/response/ - from 127.0.0.1
+2026-05-13 18:23:51,008 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '2'
+2026-05-13 18:23:51,009 - httpx - INFO - HTTP Request: POST http://test/bid/2/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,010 - app.main - INFO - POST /task/2/user/4/ - from 127.0.0.1
+2026-05-13 18:23:51,018 - app.api.endpoints.task - INFO - Заказчик '2' выбрал пользователя '4' для задачи '2'
+2026-05-13 18:23:51,019 - httpx - INFO - HTTP Request: POST http://test/task/2/user/4/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,020 - app.main - INFO - POST /bid/3/response/ - from 127.0.0.1
+2026-05-13 18:23:51,028 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '3'
+2026-05-13 18:23:51,029 - httpx - INFO - HTTP Request: POST http://test/bid/3/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,030 - app.main - INFO - POST /task/3/user/4/ - from 127.0.0.1
+2026-05-13 18:23:51,038 - app.api.endpoints.task - INFO - Заказчик '2' выбрал пользователя '4' для задачи '3'
+2026-05-13 18:23:51,038 - httpx - INFO - HTTP Request: POST http://test/task/3/user/4/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,039 - app.main - INFO - GET /task/open/ - from 127.0.0.1
+2026-05-13 18:23:51,044 - app.api.endpoints.task - INFO - Пользователь '5' посмотрел свободные задачи
+2026-05-13 18:23:51,050 - httpx - INFO - HTTP Request: GET http://test/task/open/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,490 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:51,573 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,574 - app.main - INFO - POST /auth/jwt/login - from 127.0.0.1
+2026-05-13 18:23:51,658 - httpx - INFO - HTTP Request: POST http://test/auth/jwt/login "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,659 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:51,666 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '1'
+2026-05-13 18:23:51,667 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,668 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:51,674 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '2'
+2026-05-13 18:23:51,674 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,675 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:51,681 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '3'
+2026-05-13 18:23:51,682 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,683 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:51,689 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '4'
+2026-05-13 18:23:51,690 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,691 - app.main - INFO - POST /task/create/ - from 127.0.0.1
+2026-05-13 18:23:51,697 - app.api.endpoints.task - INFO - Заказчик '2' создал задачу '5'
+2026-05-13 18:23:51,698 - httpx - INFO - HTTP Request: POST http://test/task/create/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,699 - app.main - INFO - POST /bid/1/response/ - from 127.0.0.1
+2026-05-13 18:23:51,707 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '1'
+2026-05-13 18:23:51,708 - httpx - INFO - HTTP Request: POST http://test/bid/1/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,709 - app.main - INFO - POST /bid/2/response/ - from 127.0.0.1
+2026-05-13 18:23:51,716 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '2'
+2026-05-13 18:23:51,717 - httpx - INFO - HTTP Request: POST http://test/bid/2/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,718 - app.main - INFO - POST /bid/3/response/ - from 127.0.0.1
+2026-05-13 18:23:51,724 - app.api.endpoints.bid - INFO - Исполнитель '4' откликнулся на задачу '3'
+2026-05-13 18:23:51,725 - httpx - INFO - HTTP Request: POST http://test/bid/3/response/ "HTTP/1.1 200 OK"
+2026-05-13 18:23:51,726 - app.main - INFO - GET /task/my_responsed_tasks/ - from 127.0.0.1
+2026-05-13 18:23:51,732 - app.api.endpoints.task - INFO - Исполнитель '4' посмотрел все свои задачи, на которые откликнулся
+2026-05-13 18:23:51,737 - httpx - INFO - HTTP Request: GET http://test/task/my_responsed_tasks/ "HTTP/1.1 200 OK"
+2026-05-13 18:26:04,802 - app.core.middleware - INFO - → POST /task/444/user/5/
+2026-05-13 18:26:04,810 - app.services.task - WARNING - Заказчик '4' попытался выбрать заказчика '5' для задачи '444', которой не существует
+2026-05-13 18:26:04,811 - app.core.middleware - INFO - ← 404
+2026-05-13 18:27:44,814 - app.core.middleware - INFO - POST /task/444/user/5/ | IP: 127.0.0.1
+2026-05-13 18:27:44,824 - app.services.task - WARNING - Заказчик '4' попытался выбрать заказчика '5' для задачи '444', которой не существует
+2026-05-13 18:27:44,825 - app.core.middleware - INFO - 404 | IP: 127.0.0.1

@@ -11,7 +11,9 @@ from fastapi_pagination import Page
 from fastapi_pagination.ext.sqlalchemy import paginate
 from app.services.bid import BidService
 from app.services.task import TaskService
+import logging
 
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/bid")
 
@@ -26,8 +28,10 @@ async def who_responsed_by_task(
     user: User = Depends(customer_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    user_id = user.id
     bid_service = BidService(session)
     query = await bid_service.get_bids_by_task(task_id, user.id)
+    logger.info(f"Заказчик '{user_id}' посмотрел кто откликнулся на задачу '{task_id}'")
     return await paginate(session, query)
 
 
@@ -37,6 +41,8 @@ async def response_to_a_task(
     user: User = Depends(executor_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    user_id = user.id
     task_service = TaskService(session)
-    task = await task_service.response_task(task_id, user.id)
+    task = await task_service.response_task(task_id, user_id)
+    logger.info(f"Исполнитель '{user_id}' откликнулся на задачу '{task.id}'")
     return task

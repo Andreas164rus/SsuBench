@@ -7,7 +7,9 @@ from app.models.user import User
 from app.core.user import current_user, admin_user
 from app.crud.user import user_crud
 from app.core.db import get_async_session
+import logging
 
+logger = logging.getLogger(__name__)
 router = APIRouter()
 
 router.include_router(
@@ -28,6 +30,7 @@ async def update_user_me(
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    logger.info(f"Пользователь '{user.id}' отредактировал себя")
     user_service = UserService(session)
     updated_user = await user_service.update_me(user, data)
     return updated_user
@@ -38,6 +41,7 @@ async def info_me(
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    logger.info(f"Пользователь '{user.id}' получил информацию о себе")
     u = await user_crud.get(user.id, session)
     return u
 
@@ -49,6 +53,7 @@ async def update_users(
     user: User = Depends(admin_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    logger.info(f"Админ '{user.id}' отредактирова пользователя '{user_id}'")
     user_service = UserService(session)
     updated_user = await user_service.update_user(user, user_id, data)
     return updated_user
@@ -60,6 +65,7 @@ async def info_user(
     user: User = Depends(admin_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    logger.info(f"Админ '{user.id}' отредактировал пользователя '{user_id}'")
     u = await user_crud.get(user_id, session)
     return u
 
@@ -70,6 +76,7 @@ async def deactivate_user(
     user: User = Depends(admin_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    logger.info(f"Админ '{user.id}' деактивировал пользователя '{user_id}'")
     user_service = UserService(session)
     deleted_user = await user_service.deactivate_user(user, user_id)
     return deleted_user

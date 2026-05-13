@@ -15,7 +15,9 @@ from app.models.bid import Bid
 from fastapi_pagination import Page
 from fastapi_pagination.ext.sqlalchemy import paginate
 from app.services.task import TaskService
+import logging
 
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/task")
 
@@ -30,6 +32,9 @@ async def select_user_for_a_task(
     """Выбор исполнителя для задачи заказчиком"""
     task_service = TaskService(session)
     task = await task_service.select_user_for_task(task_id, user.id, executor_id)
+    logger.info(
+        f"Заказчик '{task.customer_id}' выбрал пользователя '{task.selected_executor_id}' для задачи '{task.id}'"
+    )
     return task
 
 
@@ -40,7 +45,8 @@ async def create_task(
     session: AsyncSession = Depends(get_async_session),
 ):
     """Создание задачи заказчиком"""
-    task = await task_crud.create(data, user.id, session)
+    task: Task = await task_crud.create(data, user.id, session)
+    logger.info(f"Заказчик '{task.customer_id}' создал задачу '{task.id}'")
     return task
 
 
@@ -49,7 +55,8 @@ async def get_not_busy_tasks(
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_async_session),
 ):
-    """Получение свободных задач, на которые еще не выбрано исполнитель"""
+    logger.info(f"Пользователь '{user.id}' посмотрел свободные задачи")
+    """Получение свободных задач, на которые еще не выбран исполнитель"""
     return await paginate(
         session,
         select(Task)
@@ -63,6 +70,7 @@ async def all(
     user: User = Depends(current_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    logger.info(f"Пользователь '{user.id}' посмотрел все задачи")
     """Получение всех задач"""
     return await paginate(session, select(Task).order_by(Task.created))
 
@@ -72,6 +80,7 @@ async def my(
     user: User = Depends(customer_user),
     session: AsyncSession = Depends(get_async_session),
 ):
+    logger.info(f"Заказчик '{user.id}' посмотрел все свои задачи")
     """Задачи исполнителя"""
     return await paginate(
         session, select(Task).where(Task.customer_id == user.id).order_by(Task.created)
@@ -83,7 +92,10 @@ async def my_responsed_tasks(
     user: User = Depends(executor_user),
     session: AsyncSession = Depends(get_async_session),
 ):
-    """Задачи, на которые откликнулся исполнитель"""
+    """Задачи, на которые откликнулся текущий исполнитель"""
+    logger.info(
+        f"Исполнитель '{user.id}' посмотрел все свои задачи, на которые откликнулся"
+    )
     query = (
         select(Task)
         .join(Bid, Bid.task_id == Task.id)
@@ -101,6 +113,9 @@ async def done_task_by_ex(
 ):
     task_service = TaskService(session)
     task = await task_service.done_task_by_executor(task_id, user.id)
+    logger.info(
+        f"Исполнитель '{task.selected_executor_id}' завершил задачу '{task.id}'"
+    )
     return task
 
 
@@ -112,6 +127,9 @@ async def done_task_by_cus(
 ):
     task_service = TaskService(session)
     task = await task_service.done_task_by_customer(task_id, user)
+    logger.info(
+        f"Исполнитель '{task.customer_id}' подтвердил завершение задачи '{task.id}'"
+    )
     return task
 
 
@@ -123,4 +141,5 @@ async def cancel_task(
 ):
     task_service = TaskService(session)
     task = await task_service.delete_task(task_id, user.id)
+    logger.info(f"Исполнитель '{task.customer_id}' удалил задачу '{task.id}'")
     return task
