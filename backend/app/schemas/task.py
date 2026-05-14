@@ -1,11 +1,11 @@
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 from typing import Optional
 
 
 class TaskBase(BaseModel):
     title: str
     description: str
-    price: float
+    price: float = Field(..., gt=0)
 
 
 class CreateTask(TaskBase):

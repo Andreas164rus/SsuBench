@@ -23,8 +23,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/BearerResponse"
               example:
-                access_token: >-
-                  eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOTIyMWZmYzktNjQwZi00MzcyLTg2ZDMtY2U2NDJjYmE1NjAzIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNTcxNTA0MTkzfQ.M10bjOe45I5Ncu_uXvOmVV8QxnL-nZfcH96U90JaocI
+                access_token: eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiOTIyMWZmYzktNjQwZi00MzcyLTg2ZDMtY2U2NDJjYmE1NjAzIiwiYXVkIjoiZmFzdGFwaS11c2VyczphdXRoIiwiZXhwIjoxNTcxNTA0MTkzfQ.M10bjOe45I5Ncu_uXvOmVV8QxnL-nZfcH96U90JaocI
                 token_type: bearer
         "400":
           description: Bad Request
@@ -302,7 +301,6 @@ paths:
       tags:
         - task
       summary: Get Not Busy Tasks
-      description: Получение свободных задач, на которые еще не выбрано исполнитель
       operationId: get_not_busy_tasks_task_open__get
       security:
         - OAuth2PasswordBearer: []
@@ -346,7 +344,6 @@ paths:
       tags:
         - task
       summary: All
-      description: Получение всех задач
       operationId: all_task_all__get
       security:
         - OAuth2PasswordBearer: []
@@ -390,7 +387,6 @@ paths:
       tags:
         - task
       summary: My
-      description: Задачи исполнителя
       operationId: my_task_my_tasks__get
       security:
         - OAuth2PasswordBearer: []
@@ -434,7 +430,7 @@ paths:
       tags:
         - task
       summary: My Responsed Tasks
-      description: Задачи, на которые откликнулся исполнитель
+      description: Задачи, на которые откликнулся текущий исполнитель
       operationId: my_responsed_tasks_task_my_responsed_tasks__get
       security:
         - OAuth2PasswordBearer: []
@@ -634,6 +630,119 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HTTPValidationError"
+  /payment/add/:
+    post:
+      tags:
+        - payment
+      summary: Add Money User
+      operationId: add_money_user_payment_add__post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PaymnetCreate"
+        required: true
+      responses:
+        "200":
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PaymnentDB"
+        "422":
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+      security:
+        - OAuth2PasswordBearer: []
+  /payment/my_expenses/:
+    get:
+      tags:
+        - payment
+      summary: Get Expenses
+      operationId: get_expenses_payment_my_expenses__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            description: Page number
+            default: 1
+            title: Page
+          description: Page number
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 100
+            minimum: 1
+            description: Page size
+            default: 50
+            title: Size
+          description: Page size
+      responses:
+        "200":
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Page_PaymnentDB_"
+        "422":
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
+  /payment/my_incoming/:
+    get:
+      tags:
+        - payment
+      summary: Get Incoming
+      operationId: get_incoming_payment_my_incoming__get
+      security:
+        - OAuth2PasswordBearer: []
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            minimum: 1
+            description: Page number
+            default: 1
+            title: Page
+          description: Page number
+        - name: size
+          in: query
+          required: false
+          schema:
+            type: integer
+            maximum: 100
+            minimum: 1
+            description: Page size
+            default: 50
+            title: Size
+          description: Page size
+      responses:
+        "200":
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Page_PaymnentDB_"
+        "422":
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HTTPValidationError"
 components:
   schemas:
     BearerResponse:
@@ -719,6 +828,7 @@ components:
           title: Description
         price:
           type: number
+          exclusiveMinimum: 0
           title: Price
       type: object
       required:
@@ -779,6 +889,37 @@ components:
         - size
         - pages
       title: Page[BidWithExecutor]
+    Page_PaymnentDB_:
+      properties:
+        items:
+          items:
+            $ref: "#/components/schemas/PaymnentDB"
+          type: array
+          title: Items
+        total:
+          type: integer
+          minimum: 0
+          title: Total
+        page:
+          type: integer
+          minimum: 1
+          title: Page
+        size:
+          type: integer
+          minimum: 1
+          title: Size
+        pages:
+          type: integer
+          minimum: 0
+          title: Pages
+      type: object
+      required:
+        - items
+        - total
+        - page
+        - size
+        - pages
+      title: Page[PaymnentDB]
     Page_TaskDB_:
       properties:
         items:
@@ -810,6 +951,41 @@ components:
         - size
         - pages
       title: Page[TaskDB]
+    PaymnentDB:
+      properties:
+        id:
+          type: integer
+          title: Id
+        from_user:
+          type: integer
+          title: From User
+        to_user:
+          type: integer
+          title: To User
+        value:
+          type: number
+          title: Value
+      type: object
+      required:
+        - id
+        - from_user
+        - to_user
+        - value
+      title: PaymnentDB
+    PaymnetCreate:
+      properties:
+        user_id:
+          type: integer
+          title: User Id
+        value:
+          type: number
+          exclusiveMinimum: 0
+          title: Value
+      type: object
+      required:
+        - user_id
+        - value
+      title: PaymnetCreate
     TaskDB:
       properties:
         title:
@@ -820,6 +996,7 @@ components:
           title: Description
         price:
           type: number
+          exclusiveMinimum: 0
           title: Price
         id:
           type: integer
